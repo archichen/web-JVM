@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
+import { parse } from './fs/shell/shell';
 import './App.css';
 
 function App() {
@@ -7,9 +8,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <input onKeyPress={(e) => {
+          if (e.nativeEvent.keyCode === 13) {
+            parse(e.currentTarget.value);
+          }
+        }} placeholder='input command here...'/>
         <a
           className="App-link"
           href="https://reactjs.org"
